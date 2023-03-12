@@ -3,8 +3,9 @@ from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
 from airflow.contrib.hooks.aws_hook import AwsHook
 
+
 class StageToRedshiftOperator(BaseOperator):
-    ui_color = '#358140'
+    ui_color = "#358140"
     copy_sql = """
         COPY  {} 
         FROM '{}'
@@ -13,18 +14,18 @@ class StageToRedshiftOperator(BaseOperator):
         SECRET_ACCESS_KEY '{}'
         JSON '{}';
     """
-    
-    
 
-    
     @apply_defaults
-    def __init__(self,
-                 aws_conn_id="",
-                 redshift_conn_id="",
-                 table="",
-                 s3_bucket="",
-                 json_path = "",
-                 *args, **kwargs):
+    def __init__(
+        self,
+        aws_conn_id="",
+        redshift_conn_id="",
+        table="",
+        s3_bucket="",
+        json_path="",
+        *args,
+        **kwargs
+    ):
 
         super(StageToRedshiftOperator, self).__init__(*args, **kwargs)
         self.aws_conn_id = aws_conn_id
@@ -43,13 +44,8 @@ class StageToRedshiftOperator(BaseOperator):
             self.s3_bucket,
             credentials.access_key,
             credentials.secret_key,
-            self.json_path)
+            self.json_path,
+        )
         self.log.info("Copying data from S3 to Redshift")
         redshift.run(formatted_sql)
         self.log.info("data is transfered successfully")
-        
-
-
-
-
-

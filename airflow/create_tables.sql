@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS songplays (
 	songplay_id  integer identity(0,1),
 	start_time timestamp NOT NULL,
 	userid varchar(256) NOT NULL,
-	"level" varchar(256),
+	level varchar(256),
 	songid varchar(256),
 	artistid varchar(256),
 	sessionid int8,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS songs (
 	songid varchar(256) NOT NULL,
 	title varchar(256),
 	artistid varchar(256),
-	"year" int4,
+	year int4,
 	duration numeric(18,0),
 	CONSTRAINT songs_pkey PRIMARY KEY (songid)
 );
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS staging_events (
 	length numeric(18,0),
 	level varchar(256),
 	location varchar(256),
-	"method" varchar(256),
+	method varchar(256),
 	page varchar(256),
 	registration numeric(18,0),
 	sessionid int8,
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS staging_songs (
 	song_id varchar(256),
 	title varchar(256),
 	duration numeric(18,0),
-	"year" int4
+	year int4
 );
 
 CREATE TABLE IF NOT EXISTS time (
